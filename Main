@@ -1,6 +1,3 @@
 public class Main(){
-    public static void main(String[] args) {
-        system.out.println("hello world !");
-        Plateau p1 = new Plateau();
-  }
+
 }
