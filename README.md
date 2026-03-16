@@ -9,7 +9,7 @@ Une édition "Dé rapide" du célèbre jeu Monopoly
 | 3 | Programmer la classe Joueur (nom, argent, position, propriétés) | 3 | Personne 1 |
 | 4 | Programmer la classe Case (nom, type, prix, propriétaire) | 3 | Personne 2 |
 | 5 | Créer la classe Plateau et initialiser les cases | 4 | Personne 2 |
-| 6 | Programmer la classe Dé et le système de lancer de dés | 1 | Personne 2 |
+| 6 | Programmer la classe Dé et le système de lancer de dés | 1 | Personne 1 |
 | 7 | Programmer le déplacement des joueurs sur le plateau | 3 | Personne 2 |
 | 8 | Programmer l’achat de propriétés et la gestion des loyers | 5 | Personne 1 |
 | 9 | Programmer la gestion des tours de jeu | 4 | Les deux |
