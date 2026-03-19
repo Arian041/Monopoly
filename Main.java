@@ -1,7 +1,7 @@
 public class Main {
         public static void main(String[] args) {
-         System.out.println("hello world !");
-        Plateau p1 = new Plateau();
+          System.out.println("hello world !");
+          Plateau p1 = new Plateau();
   }
 
 }
