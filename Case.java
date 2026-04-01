@@ -1,29 +1,30 @@
-import java.util.ArrayList;
+
 
 public class Case {
 
-    private ArrayList<Case> cases;
+    String nom ; 
+    String couleur ;
 
-    public Case() {
-        this.cases = new ArrayList<>();
+    public Case(String nom) {
+        this.nom = nom;
     }
 
-    public void ajouterCase(Case c) {
-        cases.add(c);
+
+    public Case(String nom, String couleur) {
+        this.nom = nom;
+        this.couleur = couleur;
     }
 
-    public Case getCase(int index) {
-        if (index >= 0 && index < cases.size()) {
-            return cases.get(index);
-        }
-        return null; // ou lancer une exception
-    }
+    public String getNom() {
+        return nom;
+    }   
 
-    public int getNombreCases() {
-        return cases.size();
-    }
 
-    
+
+
+
+
+
 
 
 
