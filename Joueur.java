@@ -1,8 +1,11 @@
+import java.lang.reflect.Array;
+
 public class Joueur {
     private String nom;
     private int position;
     private int argent;
     private boolean enPrison;
+    private ArrayList<Case> proprietes; // Liste des propriétés possédées par le joueur
 
 
     public Joueur(String nom) {
