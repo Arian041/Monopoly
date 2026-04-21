@@ -22,6 +22,8 @@ public class Plateau {
         return cases.size();
     }
 
+    
+
 
 
 
