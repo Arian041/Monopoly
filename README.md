@@ -1,5 +1,5 @@
 # Monopoly
-Une édition "Dé rapide" du célèbre jeu Monopoly
+Une édition "Dé rapide" du jeu Monopoly
 ## Planning du projet Monopoly - Édition Dés Rapide
 
 | Étape | Description | Temps estimé (heures) | Responsable |
