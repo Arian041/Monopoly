@@ -5,7 +5,7 @@ Une édition "Dé rapide" du jeu Monopoly
 | Étape | Description | Temps estimé (heures) | Responsable |
 |------|-------------|----------------------|-------------|
 | 1 | Comprendre les règles du Monopoly Dés Rapide et définir les classes principales | 4 | Les deux |
-| 2 | Créer la structure du projet Java (packages, classes principales) | 2 | Les deux |
+| 2 | Créer la structure du projet Java ( classes principales) | 2 | Les deux |
 | 3 | Programmer la classe Joueur (nom, argent, position, propriétés) | 3 | Personne 1 |
 | 4 | Programmer la classe Case (nom, type, prix, propriétaire) | 3 | Personne 2 |
 | 5 | Créer la classe Plateau et initialiser les cases | 4 | Personne 2 |
