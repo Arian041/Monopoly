@@ -17,5 +17,5 @@ Une édition "Dé rapide" du jeu Monopoly
 | 11 | Tester le jeu et corriger les bugs | 6 | Les deux |
 | 12 | Améliorer l’affichage dans la console et ajouter des messages | 3 | Les deux |
 
-**Temps total estimé :** ~40 heures  
+Temps total estimé : ~40 heures  
  
