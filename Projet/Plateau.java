@@ -11,7 +11,7 @@ public class Plateau {
     }
 
     public Case getCase(int index) {
-        if (index >= 0 && index < cases.size()) {
+        if (index >= 0 && index <= cases.size()) {
             return cases.get(index);
         }
         return null; // ou lancer une exception
@@ -20,4 +20,7 @@ public class Plateau {
     public int getNombreCases() {
         return cases.size();
     }
+
+    
+    
 }

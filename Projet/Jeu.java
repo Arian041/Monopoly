@@ -27,10 +27,16 @@ public class Jeu {
     // ============================================================
 
     public void jouer() {
+        
         System.out.println("\n=== Que la partie commence ! ===\n");
         while (!partieTerminee()) {
             Joueur joueurActuel = joueurs.get(indexJoueurActuel);
             if(!joueurActuel.enFaillite()){
+                try {
+                    Thread.sleep(0000); // Pause d'une seconde entre les tours pour une meilleure lisibilité
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
                 jouerTour(joueurActuel);
             }
             passerAuJoueurSuivant();
@@ -43,9 +49,13 @@ public class Jeu {
     // ============================================================
 
     private void jouerTour(Joueur joueur) {
+        Case caseActuelle = plateau.getCase(joueur.getPosition());
         System.out.println("\n--- Tour de " + joueur.getNom() + " ---");
-        System.out.println("Position : " + plateau.getCase(joueur.getPosition()).getNom());
-        System.out.println("Argent   : " + joueur.getArgent() + " pièces");
+        System.out.println("Position : " + caseActuelle.getNom() + (caseActuelle.getCouleur() != null && 
+         !caseActuelle.getCouleur().equals("c") &&
+          !caseActuelle.getCouleur().equals("g") ? " (" + caseActuelle.getCouleur() + ")" : "") 
+          + " (case n°" + (joueur.getPosition()+1) + "/ 40)");
+        System.out.println("Argent   : " + joueur.getArgent() + " ecus");
 
         // Si le joueur est en prison
         if (joueur.estEnPrison()) {
@@ -58,7 +68,7 @@ public class Jeu {
         if (tourdechauffe == true) {
             tirage = Des.tiragedesblancs();
         } else {
-            tirage = Des.tiragedesrapide();
+            tirage = Des.tiragedesrapide(joueur, plateau);
         }
 
         // Vérifier si le joueur passe par le Départ
@@ -66,13 +76,17 @@ public class Jeu {
         if (nouvellePosition < joueur.getPosition()) {
             tourdechauffe = false;
             joueur.ajouterArgent(200);
-            System.out.println("Vous passez par la Comté (Départ) ! +200 pièces");
+            System.out.println("Vous passez par la Comté (Départ) ! +200 ecus");
+            System.out.println("Argent   : " + joueur.getArgent() + " ecus");
         }
 
         joueur.deplacer(tirage);
-        Case caseActuelle = plateau.getCase(joueur.getPosition());
-        System.out.println("Vous arrivez sur : " + caseActuelle.getNom());
-
+        caseActuelle = plateau.getCase(joueur.getPosition());
+        System.out.println("Vous arrivez sur : " + caseActuelle.getNom() + 
+        (caseActuelle.getCouleur() != null &&
+         !caseActuelle.getCouleur().equals("c") &&
+          !caseActuelle.getCouleur().equals("g") ? " (" + caseActuelle.getCouleur() + ")" : "") 
+        + " (case n°" + (joueur.getPosition()+1) + "/ 40)");
         Banque.EffetCase(joueur, caseActuelle);
     }
 
@@ -94,7 +108,9 @@ public class Jeu {
             if (joueurs.get(i).getArgent() > gagnant.getArgent()) gagnant = joueurs.get(i);
         }
         System.out.println("\n=== " + gagnant.getNom() + " remporte la partie avec " 
-            + gagnant.getArgent() + " pièces ! ===");
+            + gagnant.getArgent() + " ecus ! ===");
+        Leaderboard.enregistrerVictoire(gagnant.getNom(), gagnant.getArgent());
+        System.out.println("Le leaderboard a été mis à jour avec succès !");
     }
     
 

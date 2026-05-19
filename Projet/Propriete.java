@@ -115,9 +115,25 @@ public class Propriete{
                     break; // Si un seul participant reste, sortir de la boucle
                 }
                 Joueur joueur = participants.get(i);
-                System.out.println(joueur.getNom() + ", voulez-vous enchérir ? (oui/non)\n Vous avez "+joueur.getArgent()+" sur votre compte en banque.");
-                String reponse = scanner.nextLine();
-                if (reponse.equals("oui")){
+                System.out.println(joueur.getNom() + ", voulez-vous enchérir ?" );
+                int reponse;
+                while (true) {
+                System.out.println("1.oui/ 2.non\n Vous avez "+joueur.getArgent()+" sur votre compte en banque.");
+
+                if (scanner.hasNextInt()) {
+                    reponse = scanner.nextInt();
+
+                    if (reponse == 1 || reponse == 2) {
+                        break; // saisie valide
+                    } else {
+                        System.out.println("Choix invalide. Veuillez entrer 1 ou 2.");
+                    }
+                } else {
+                    System.out.println("Veuillez entrer un nombre.");
+                    scanner.next(); // supprime l'entrée invalide
+                }
+                }
+                if (reponse == 1 ){
                     System.out.println("Entrez votre enchère (minimum : " + (montant+1) + ") ");
                     if(scanner.hasNextInt()){
                         int enchere = scanner.nextInt();
@@ -136,7 +152,7 @@ public class Propriete{
                     System.out.println("Enchère invalide. Veuillez entrer un montant raisonnable.");
                     i--;
                     }
-                } else {
+                } else if(reponse == 2) {
                     System.out.println(joueur.getNom() + " se retire de l'enchère.");
                     participants.remove(joueur); // Le joueur se retire de l'enchère
                     i--;
@@ -361,14 +377,23 @@ public class Propriete{
         }
 
         System.out.println(acheteur.getNom() + ", acceptez-vous d'acheter " + 
-            proprieteAVendre.getNom() + " pour " + prix + " écus ? (1. Oui / 2. Non)");
+            proprieteAVendre.getNom() + " pour " + prix + " écus ?");
             int reponse;
-            if(scanner.hasNextInt()){
-                reponse = scanner.nextInt();
-                scanner.nextLine();
-            } else {
-                System.out.println("Choix invalide. Transaction annulée.");
-                return;
+            while (true) {
+                System.out.println("1. Oui 2. Non");
+
+                if (scanner.hasNextInt()) {
+                    reponse = scanner.nextInt();
+
+                    if (reponse == 1 || reponse == 2) {
+                        break; // saisie valide
+                    } else {
+                        System.out.println("Choix invalide. Veuillez entrer 1 ou 2.");
+                    }
+                } else {
+                    System.out.println("Veuillez entrer un nombre.");
+                    scanner.next(); // supprime l'entrée invalide
+                }
             }
         if (reponse == 1) {
             // Transaction
@@ -398,9 +423,23 @@ public class Propriete{
             // Propriété disponible : proposer achat ou enchère
             System.out.println("Cette propriété est disponible !");
             System.out.println("Prix d'achat : " + propriete.getPrixAchat() + " ecus");
-            System.out.println("1. Acheter 2. Ne pas acheter");
-            int choix = scanner.nextInt();
-            scanner.nextLine();
+           int choix = 0;
+            while (true) {
+                System.out.println("1. Acheter 2. Ne pas acheter");
+
+                if (scanner.hasNextInt()) {
+                    choix = scanner.nextInt();
+
+                    if (choix == 1 || choix == 2) {
+                        break; // saisie valide
+                    } else {
+                        System.out.println("Choix invalide. Veuillez entrer 1 ou 2.");
+                    }
+                } else {
+                    System.out.println("Veuillez entrer un nombre.");
+                    scanner.next(); // supprime l'entrée invalide
+                }
+            }
 
             switch (choix) {
                 case 1:
@@ -438,9 +477,26 @@ public class Propriete{
      
     public static void gererConstructions(Joueur joueur, Propriete propriete) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Voulez-vous construire une maison ? (1. Oui  2. Non)");
-        int choix = scanner.nextInt();
-        scanner.nextLine();
+        System.out.println("Voulez-vous construire une maison ?");
+        System.out.println("Prix de construction : " + (propriete.getPrixAchat() / 2) + " écus");
+        int choix = 0;
+            while (true) {
+                System.out.println("1. oui 2. Non");
+
+                if (scanner.hasNextInt()) {
+                    choix = scanner.nextInt();
+
+                    if (choix == 1 || choix == 2) {
+                        break; // saisie valide
+                    } else {
+                        System.out.println("Choix invalide. Veuillez entrer 1 ou 2.");
+                    }
+                } else {
+                    System.out.println("Veuillez entrer un nombre.");
+                    scanner.next(); // supprime l'entrée invalide
+                }
+            }
+       
         if (choix == 1) {
             int prixMaison = propriete.getPrixAchat() / 2;
             if (joueur.getArgent() >= prixMaison) {
@@ -469,9 +525,24 @@ public class Propriete{
         Joueur proprietaire = gare.getProprietaire();
         if (proprietaire == null) {
             System.out.println("Cette gare est disponible ! \n Prix : 200 ecus");
-            System.out.println("1. Acheter 2. Ne pas acheter");
-            int choix = scanner.nextInt();
-            scanner.nextLine();
+            int choix = 0;
+            while (true) {
+                System.out.println("1. Acheter 2. Ne pas acheter");
+
+                if (scanner.hasNextInt()) {
+                    choix = scanner.nextInt();
+
+                    if (choix == 1 || choix == 2) {
+                        break; // saisie valide
+                    } else {
+                        System.out.println("Choix invalide. Veuillez entrer 1 ou 2.");
+                    }
+                } else {
+                    System.out.println("Veuillez entrer un nombre.");
+                    scanner.next(); // supprime l'entrée invalide
+                }
+            }
+       
             if (choix == 1) {
                 if (joueur.getArgent() >= 200) {
                     joueur.retirerArgent(200);
@@ -526,9 +597,24 @@ public class Propriete{
         Joueur proprietaire = compagnie.getProprietaire();
         if (proprietaire == null) {
             System.out.println("Cette compagnie est disponible ! Prix : 150 ecus");
-            System.out.println("1. Acheter   2. Ne pas acheter");
-            int choix = scanner.nextInt();
-            scanner.nextLine();
+            int choix = 0;
+            while (true) {
+                System.out.println("1. Acheter   2. Ne pas acheter");
+
+                if (scanner.hasNextInt()) {
+                    choix = scanner.nextInt();
+
+                    if (choix == 1 || choix == 2) {
+                        break; // saisie valide
+                    } else {
+                        System.out.println("Choix invalide. Veuillez entrer 1 ou 2.");
+                    }
+                } else {
+                    System.out.println("Veuillez entrer un nombre.");
+                    scanner.next(); // supprime l'entrée invalide
+                }
+            }
+       
             if (choix == 1) {
                 if (joueur.getArgent() >= 150) {
                     joueur.retirerArgent(150);
