@@ -33,7 +33,7 @@ public class Jeu {
             Joueur joueurActuel = joueurs.get(indexJoueurActuel);
             if(!joueurActuel.enFaillite()){
                 try {
-                    Thread.sleep(0000); // Pause d'une seconde entre les tours pour une meilleure lisibilité
+                    Thread.sleep(2000); // Pause d'une seconde entre les tours pour une meilleure lisibilité
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
@@ -42,6 +42,7 @@ public class Jeu {
             passerAuJoueurSuivant();
         }
         afficherGagnant();
+
     }
 
     // ============================================================
@@ -64,7 +65,7 @@ public class Jeu {
         }
 
         // Lancer les dés
-        int tirage;
+        int [] tirage;
         if (tourdechauffe == true) {
             tirage = Des.tiragedesblancs();
         } else {
@@ -72,7 +73,7 @@ public class Jeu {
         }
 
         // Vérifier si le joueur passe par le Départ
-        int nouvellePosition = (joueur.getPosition() + tirage) % 40;
+        int nouvellePosition = (joueur.getPosition() + tirage[2]) % 40;
         if (nouvellePosition < joueur.getPosition()) {
             tourdechauffe = false;
             joueur.ajouterArgent(200);
@@ -80,7 +81,7 @@ public class Jeu {
             System.out.println("Argent   : " + joueur.getArgent() + " ecus");
         }
 
-        joueur.deplacer(tirage);
+        joueur.deplacer(tirage[2]);
         caseActuelle = plateau.getCase(joueur.getPosition());
         System.out.println("Vous arrivez sur : " + caseActuelle.getNom() + 
         (caseActuelle.getCouleur() != null &&
@@ -97,9 +98,11 @@ public class Jeu {
     private boolean partieTerminee() {
         int joueursSolvables = 0;
         for (int i = 0; i < joueurs.size(); i++) {
-            if (joueurs.get(i).getArgent() >= 0) joueursSolvables++;
+            if (joueurs.get(i).getArgent() >= 0 && !joueurs.get(i).enFaillite()) {
+                joueursSolvables++;
+            }
         }
-        return joueursSolvables <= 1;
+        return joueursSolvables == 1;
     }
 
     private void afficherGagnant() {

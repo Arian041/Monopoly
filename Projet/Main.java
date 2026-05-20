@@ -162,7 +162,7 @@ public class Main {
 
         boolean enCours = true;
         while (enCours) {
-            System.out.println("=== Bienvenue dans Lord of Capitalism ! ===");
+            System.out.println("\n=== Bienvenue dans Lord of Capitalism ! ===");
             System.out.println("1. Voir le Leaderboard");
             System.out.println("2. Lancer une nouvelle partie");
             System.out.println("3. Quitter");
@@ -188,7 +188,7 @@ public class Main {
                 initialiserPartie();
                 Jeu j1 = new Jeu(plateau, joueurs);
                 j1.jouer();
-                enCours = false; // Arrête le programme une fois la partie finie
+                // retour au menu de départ après la partie
             } else if (choix == 3) {
                 System.out.println("Au revoir !");
                 enCours = false;

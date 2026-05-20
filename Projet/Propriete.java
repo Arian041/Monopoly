@@ -107,6 +107,7 @@ public class Propriete{
         int montant = 10;
         ArrayList<Joueur> participants = new ArrayList<>(); // Liste des joueurs participants à l'enchère
         for (int i = 0; i < Main.joueurs.size(); i++) {
+            if (Main.joueurs.get(i).getArgent() >= montant)
             participants.add(Main.joueurs.get(i));
             } 
         while (participants.size() > 1) {
@@ -118,7 +119,7 @@ public class Propriete{
                 System.out.println(joueur.getNom() + ", voulez-vous enchérir ?" );
                 int reponse;
                 while (true) {
-                System.out.println("1.oui/ 2.non\n Vous avez "+joueur.getArgent()+" sur votre compte en banque.");
+                System.out.println("1.oui / 2.non\n Vous avez "+joueur.getArgent()+" sur votre compte en banque.");
 
                 if (scanner.hasNextInt()) {
                     reponse = scanner.nextInt();
